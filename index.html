@@ -2,8 +2,53 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title></title>
-    <link href="./styles/style.css" rel="stylesheet" />
+    <title>Mesto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./pages/index.css" rel="stylesheet" />
   </head>
-  <body></body>
+  <body class="page">
+    <header class="header page__header">
+      <img class="header__logo" src="./images/logo.svg" />
+      <hr class="header__line" />
+    </header>
+    <main class="main page__main">
+      <section class="profile">
+        <div class="profile__info">
+          <img class="profile__image" src="./images/profile-img.jpg" />
+          <div class="profile__title">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button"></button>
+            <p class="profile__description">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img class="element__image" />
+          <div class="element__description">
+            <h2 class="element__title"></h2>
+            <img class="element__like" />
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" />
+          <div class="element__description">
+            <h2 class="element__title"></h2>
+            <img class="element__like" />
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" />
+          <div class="element__description">
+            <h2 class="element__title"></h2>
+            <img class="element__like" />
+          </div>
+        </div>
+      </section>
+      <footer class="footer page__footer">
+        <p class="footer__copyright"></p>
+      </footer>
+    </main>
+  </body>
 </html>

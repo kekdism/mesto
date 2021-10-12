@@ -1,0 +1,9 @@
+.profile__title {
+  font-family: 'Inter', Arial, sans-serif;
+  margin-left: 30px;
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: min-content min-content;
+  grid-template-rows: min-content min-content;
+  grid-gap: 16px 18px;
+}
