@@ -7,3 +7,9 @@
   margin-top: 41px;
   padding: 0;
 }
+
+@media screen and (max-width: 879px) {
+  .header__line {
+    margin-top: 31.6px;
+  }
+}
