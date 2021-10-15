@@ -11,4 +11,4 @@
 
 **Pages**
 
-Посмотреть работу можно по ссылке - https://maksimpozharskiy.github.io/mesto/.
+Посмотреть работу можно по ссылке - https://kekdism.github.io/mesto/.
