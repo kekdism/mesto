@@ -9,7 +9,6 @@
   <body class="page">
     <header class="header page__header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
-      <hr class="header__line" />
     </header>
     <main class="main page__main">
       <section class="profile">
@@ -21,11 +20,11 @@
           />
           <div class="profile__title">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button type="button" class="profile__edit-button"></button>
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
         <div class="element">
@@ -36,11 +35,7 @@
           />
           <div class="element__description">
             <h2 class="element__title">Карачаевск</h2>
-            <img
-              class="element__like"
-              src="./images/like.svg"
-              alt="Иконка лайка"
-            />
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
@@ -51,11 +46,7 @@
           />
           <div class="element__description">
             <h2 class="element__title">Домбай</h2>
-            <img
-              class="element__like"
-              src="./images/like.svg"
-              alt="Иконка лайка"
-            />
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
@@ -68,11 +59,7 @@
             <h2 class="element__title">
               Санкт-Петербург Петропавловск-Камчатский
             </h2>
-            <img
-              class="element__like"
-              src="./images/like.svg"
-              alt="Иконка лайка"
-            />
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
@@ -83,11 +70,7 @@
           />
           <div class="element__description">
             <h2 class="element__title">Карачаевск</h2>
-            <img
-              class="element__like"
-              src="./images/like.svg"
-              alt="Иконка лайка"
-            />
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
@@ -98,11 +81,7 @@
           />
           <div class="element__description">
             <h2 class="element__title">Домбай</h2>
-            <img
-              class="element__like"
-              src="./images/like.svg"
-              alt="Иконка лайка"
-            />
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
@@ -113,11 +92,7 @@
           />
           <div class="element__description">
             <h2 class="element__title">Карачаево-Черкессия</h2>
-            <img
-              class="element__like"
-              src="./images/like.svg"
-              alt="Иконка лайка"
-            />
+            <button type="button" class="element__like"></button>
           </div>
         </div>
       </section>
@@ -126,18 +101,24 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <div class="popup">
-      <form class="popup__container">
-        <img
-          class="popup__close"
-          src="./images/CloseIcon.svg"
-          alt="Аватар пользователя"
-        />
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__name" />
-        <input type="text" class="popup__description" />
-        <button class="popup__save" type="submit">Сохранить</button>
-      </form>
+      <div class="popup__container">
+        <button type="button" class="popup__close"></button>
+        <form name="popup__form" class="popup__form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input
+            type="text"
+            name="popup__input_name"
+            class="popup__input popup__input_name"
+          />
+          <input
+            type="text"
+            name="popup__input_description"
+            class="popup__input popup__input_description"
+          />
+          <button class="popup__save" type="submit">Сохранить</button>
+        </form>
+      </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
