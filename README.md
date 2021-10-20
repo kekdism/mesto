@@ -1,14 +1,15 @@
 # Проект: Место
 
-### Обзор
+Учебный проект "Место" - это учебный проект в процессе обучения в Яндекс Практикум. Представляет собой интерактивную страницу с карточками, где можно добавлять/удалять карточки мест, ставить лайки, редактировать информацию о пользоватете. Вся информация сохраняется на сервере. Также реализована регистрация и авторизация пользователя.
 
-- Figma
-- Картинки
+[Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-**Figma**
+[GitHubPages](https://kekdism.github.io/mesto/)
 
-- [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+**Технологии :**
 
-**Pages**
-
-Посмотреть работу можно по ссылке - https://kekdism.github.io/mesto/.
+- HTML
+- CSS
+- Grid-layout
+- normalize.css
+- Font 'Inter'
