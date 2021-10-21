@@ -4,8 +4,8 @@ const popup = document.querySelector('.popup');
 const formPopup = document.querySelector('.popup__form');
 const pageName = document.querySelector('.profile__name');
 const pageDesc = document.querySelector('.profile__description');
-const newName = document.querySelector('.popup__input_name');
-const newDesc = document.querySelector('.popup__input_description');
+const newName = document.querySelector('.popup__input_info_name');
+const newDesc = document.querySelector('.popup__input_info_description');
 
 function closePopup() {
   popup.classList.remove('popup_opened');
@@ -17,9 +17,9 @@ function openPopup() {
   popup.classList.add('popup_opened');
 }
 
-function saveInfo(evt) {
+function handleFormSubmit(evt) {
   evt.preventDefault();
-  pageName.innerText = newName.value;
+  pageName.textContent = newName.value;
   pageDesc.textContent = newDesc.value;
   closePopup();
 }
@@ -28,4 +28,4 @@ buttonOpenPopup.addEventListener('click', openPopup);
 
 buttonClosePopup.addEventListener('click', closePopup);
 
-formPopup.addEventListener('submit', saveInfo);
+formPopup.addEventListener('submit', handleFormSubmit);
