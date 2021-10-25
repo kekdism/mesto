@@ -26,76 +26,7 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-      <section class="elements">
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/element-karachaevsk.jpg"
-            alt="Карачаевск"
-          />
-          <div class="element__description">
-            <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/element-elbrus.jpg"
-            alt="Эльбрус"
-          />
-          <div class="element__description">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/element-dombai.jpg"
-            alt="Домбай"
-          />
-          <div class="element__description">
-            <h2 class="element__title">
-              Санкт-Петербург Петропавловск-Камчатский
-            </h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/element-karachaevsk.jpg"
-            alt="Карачаевск"
-          />
-          <div class="element__description">
-            <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/element-elbrus.jpg"
-            alt="Эльбрус"
-          />
-          <div class="element__description">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/element-dombai.jpg"
-            alt="Домбай"
-          />
-          <div class="element__description">
-            <h2 class="element__title">Карачаево-Черкессия</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-      </section>
+      <section class="elements"></section>
     </main>
     <footer class="footer page__footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -119,6 +50,15 @@
         </form>
       </div>
     </div>
+    <template id="element-template">
+      <article class="element">
+        <img class="element__image" />
+        <div class="element__description">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
+    </template>
     <script src="./scripts/script.js"></script>
   </body>
 </html>
