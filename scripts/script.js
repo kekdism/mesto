@@ -1,6 +1,19 @@
 const buttonOpenEditPopup = document.querySelector('.profile__edit-button');
 const buttonOpenAddPopup = document.querySelector('.profile__add-button');
 const buttonClosePopup = document.querySelector('.popup__close');
+const addPopup = document.querySelector('.popup_add');
+const addForm = addPopup.querySelector('.form');
+const addClose = addPopup.querySelector('.popup__close');
+const elementName = addForm.querySelector('.form__input_element_name');
+const elementUrl = addForm.querySelector('.form__input_element_url');
+const editPopup = document.querySelector('.popup_edit');
+const editForm = editPopup.querySelector('.form');
+const editClose = editPopup.querySelector('.popup__close');
+const newName = editForm.querySelector('.form__input_info_name');
+const newDesc = editForm.querySelector('.form__input_info_description');
+const imagePopup = document.querySelector('.popup_image');
+const imageClose = imagePopup.querySelector('.popup__close');
+const caption = imagePopup.querySelector('.big-image__caption');
 const pageName = document.querySelector('.profile__name');
 const pageDesc = document.querySelector('.profile__description');
 const elements = document.querySelector('.elements');
@@ -32,6 +45,53 @@ const initialCards = [
   },
 ];
 
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+};
+
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+};
+
+const handleEditFormSubmit = (evt) => {
+  evt.preventDefault();
+  pageName.textContent = newName.value;
+  pageDesc.textContent = newDesc.value;
+  closePopup(editPopup);
+};
+
+const openEditPopup = () => {
+  newName.value = pageName.textContent;
+  newDesc.value = pageDesc.textContent;
+  openPopup(editPopup);
+};
+
+const handleAddFormSubmit = (evt) => {
+  evt.preventDefault();
+  const name = elementName.value;
+  const link = elementUrl.value;
+  elements.prepend(createNewElement({ name, link }));
+  addForm.reset();
+  closePopup(addPopup);
+};
+
+const openAddPopup = () => {
+  openPopup(addPopup);
+};
+
+const openImagePopup = (img) => {
+  image.src = img.src;
+  image.alt = img.alt;
+  caption.textContent = img.alt;
+  openPopup(imagePopup);
+};
+
+const initialElements = () => {
+  initialCards.forEach((item) => {
+    elements.append(createNewElement(item));
+  });
+};
+
 const createNewElement = (data) => {
   const templateElement = document.querySelector('#element-template').content;
   const newElement = templateElement.cloneNode(true);
@@ -50,82 +110,21 @@ const createNewElement = (data) => {
   return newElement;
 };
 
-const handleAddFormSubmit = (evt, popup) => {
-  evt.preventDefault();
-  const addForm = popup.querySelector('.form');
-  const name = popup.querySelector('.form__input_element_name').value;
-  const link = popup.querySelector('.form__input_element_url').value;
-  elements.prepend(createNewElement({ name, link }));
-  addForm.reset();
-  closePopup(popup);
-};
-
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-};
-
-const openPopup = (popup) => {
-  const popupClose = popup.querySelector('.popup__close');
-  popupClose.addEventListener('click', (evt) => {
-    closePopup(popup);
-  });
-  popup.classList.add('popup_opened');
-};
-
-const handleEditFormSubmit = (evt, popup) => {
-  evt.preventDefault();
-  const newName = popup.querySelector('.form__input_info_name');
-  const newDesc = popup.querySelector('.form__input_info_description');
-  pageName.textContent = newName.value;
-  pageDesc.textContent = newDesc.value;
-  closePopup(popup);
-};
-
-const openEditPopup = () => {
-  const popupEdit = document.querySelector('.popup_edit');
-  const newName = popupEdit.querySelector('.form__input_info_name');
-  const newDesc = popupEdit.querySelector('.form__input_info_description');
-  newName.value = pageName.textContent;
-  newDesc.value = pageDesc.textContent;
-  const editForm = popupEdit.querySelector('.form');
-  editForm.addEventListener('submit', (evt) =>
-    handleEditFormSubmit(evt, popupEdit)
-  );
-  openPopup(popupEdit);
-};
-
-const openAddPopup = () => {
-  const popupAdd = document.querySelector('.popup_add');
-  const addForm = popupAdd.querySelector('.form');
-  addForm.addEventListener('submit', (evt) =>
-    handleAddFormSubmit(evt, popupAdd)
-  );
-  openPopup(popupAdd);
-};
-
-const openImagePopup = (img) => {
-  const popupImage = document.querySelector('.popup_image');
-  const image = popupImage.querySelector('.big-image__image');
-  image.src = img.src;
-  image.alt = img.alt;
-  const caption = popupImage.querySelector('.big-image__caption');
-  caption.textContent = img.alt;
-  openPopup(popupImage);
-};
-
 const deleteElement = (butt) => {
   const closestElement = butt.closest('.element');
   closestElement.remove();
 };
 
-const initialElements = () => {
-  initialCards.forEach((item) => {
-    elements.append(createNewElement(item));
-  });
-};
+initialElements();
 
 buttonOpenEditPopup.addEventListener('click', openEditPopup);
 
 buttonOpenAddPopup.addEventListener('click', openAddPopup);
 
-initialElements();
+addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt));
+
+editForm.addEventListener('submit', (evt) => handleEditFormSubmit(evt));
+
+addClose.addEventListener('click', () => closePopup(addPopup));
+editClose.addEventListener('click', () => closePopup(editPopup));
+imageClose.addEventListener('click', () => closePopup(imagePopup));
