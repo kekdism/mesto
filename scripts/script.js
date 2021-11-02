@@ -13,6 +13,7 @@ const newName = editForm.querySelector('.form__input_info_name');
 const newDesc = editForm.querySelector('.form__input_info_description');
 const imagePopup = document.querySelector('.popup_image');
 const imageClose = imagePopup.querySelector('.popup__close');
+const image = imagePopup.querySelector('.big-image__image');
 const caption = imagePopup.querySelector('.big-image__caption');
 const pageName = document.querySelector('.profile__name');
 const pageDesc = document.querySelector('.profile__description');
