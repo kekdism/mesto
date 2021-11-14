@@ -3,16 +3,13 @@ const buttonOpenAddPopup = document.querySelector('.profile__add-button');
 const buttonClosePopup = document.querySelector('.popup__close');
 const addPopup = document.querySelector('.popup_add');
 const addForm = addPopup.querySelector('.form');
-const addClose = addPopup.querySelector('.popup__close');
-const elementName = addForm.querySelector('.form__input_element_name');
-const elementUrl = addForm.querySelector('.form__input_element_url');
+const elementName = addForm.querySelector('#add-name');
+const elementUrl = addForm.querySelector('#add-url');
 const editPopup = document.querySelector('.popup_edit');
 const editForm = editPopup.querySelector('.form');
-const editClose = editPopup.querySelector('.popup__close');
-const newName = editForm.querySelector('.form__input_info_name');
-const newDesc = editForm.querySelector('.form__input_info_description');
+const newName = editForm.querySelector('#edit-name');
+const newDesc = editForm.querySelector('#edit-description');
 const imagePopup = document.querySelector('.popup_image');
-const imageClose = imagePopup.querySelector('.popup__close');
 const image = imagePopup.querySelector('.big-image__image');
 const caption = imagePopup.querySelector('.big-image__caption');
 const pageName = document.querySelector('.profile__name');
@@ -91,6 +88,8 @@ const initialElements = () => {
   initialCards.forEach((item) => {
     elements.append(createNewElement(item));
   });
+  newName.value = pageName.textContent;
+  newDesc.value = pageDesc.textContent;
 };
 
 const createNewElement = (data) => {
@@ -116,6 +115,18 @@ const deleteElement = (butt) => {
   closestElement.remove();
 };
 
+const setPopupsListeners = (popupList) => {
+  popupList.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup')) {
+        closePopup(popup);
+      }
+    });
+    const closeButton = popup.querySelector('.popup__close');
+    closeButton.addEventListener('click', () => closePopup(popup));
+  });
+};
+
 initialElements();
 
 buttonOpenEditPopup.addEventListener('click', openEditPopup);
@@ -126,6 +137,11 @@ addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt));
 
 editForm.addEventListener('submit', (evt) => handleEditFormSubmit(evt));
 
-addClose.addEventListener('click', () => closePopup(addPopup));
-editClose.addEventListener('click', () => closePopup(editPopup));
-imageClose.addEventListener('click', () => closePopup(imagePopup));
+setPopupsListeners([editPopup, addPopup, imagePopup]);
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+});
