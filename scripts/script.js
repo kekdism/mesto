@@ -12,8 +12,8 @@ const newDesc = editForm.querySelector('#edit-description');
 const imagePopup = document.querySelector('.popup_image');
 const image = imagePopup.querySelector('.big-image__image');
 const caption = imagePopup.querySelector('.big-image__caption');
-const pageName = document.querySelector('.profile__name');
-const pageDesc = document.querySelector('.profile__description');
+const userName = document.querySelector('.profile__name');
+const userDesc = document.querySelector('.profile__description');
 const elements = document.querySelector('.elements');
 
 const initialCards = [
@@ -45,22 +45,32 @@ const initialCards = [
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupWithEscape);
 };
 
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+
+  document.addEventListener('keydown', closePopupWithEscape);
+};
+
+const closePopupWithEscape = (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 };
 
 const handleEditFormSubmit = (evt) => {
   evt.preventDefault();
-  pageName.textContent = newName.value;
-  pageDesc.textContent = newDesc.value;
+  userName.textContent = newName.value;
+  userDesc.textContent = newDesc.value;
   closePopup(editPopup);
 };
 
 const openEditPopup = () => {
-  newName.value = pageName.textContent;
-  newDesc.value = pageDesc.textContent;
+  newName.value = userName.textContent;
+  newDesc.value = userDesc.textContent;
   openPopup(editPopup);
 };
 
@@ -84,12 +94,12 @@ const openImagePopup = (img) => {
   openPopup(imagePopup);
 };
 
-const initialElements = () => {
+const addInitialElements = () => {
   initialCards.forEach((item) => {
     elements.append(createNewElement(item));
   });
-  newName.value = pageName.textContent;
-  newDesc.value = pageDesc.textContent;
+  newName.value = userName.textContent;
+  newDesc.value = userDesc.textContent;
 };
 
 const createNewElement = (data) => {
@@ -110,8 +120,8 @@ const createNewElement = (data) => {
   return newElement;
 };
 
-const deleteElement = (butt) => {
-  const closestElement = butt.closest('.element');
+const deleteElement = (button) => {
+  const closestElement = button.closest('.element');
   closestElement.remove();
 };
 
@@ -127,7 +137,7 @@ const setPopupsListeners = (popupList) => {
   });
 };
 
-initialElements();
+addInitialElements();
 
 buttonOpenEditPopup.addEventListener('click', openEditPopup);
 
@@ -138,10 +148,3 @@ addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt));
 editForm.addEventListener('submit', (evt) => handleEditFormSubmit(evt));
 
 setPopupsListeners([editPopup, addPopup, imagePopup]);
-
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-});
