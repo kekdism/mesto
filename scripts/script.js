@@ -89,7 +89,6 @@ const handleAddFormSubmit = (evt) => {
   const link = elementUrl.value;
   elements.prepend(new Card({ name, link }, cardTemplateId).createCard());
   addForm.reset();
-  new FormValidator(settings, addForm).enableValidation();
   closePopup(addPopup);
 };
 
