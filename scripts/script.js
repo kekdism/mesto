@@ -1,6 +1,7 @@
+import { Card } from './card.js';
+import { FormValidator } from './validation.js';
 const buttonOpenEditPopup = document.querySelector('.profile__edit-button');
 const buttonOpenAddPopup = document.querySelector('.profile__add-button');
-const buttonClosePopup = document.querySelector('.popup__close');
 const addPopup = document.querySelector('.popup_add');
 const addForm = addPopup.querySelector('.form');
 const elementName = addForm.querySelector('#add-name');
@@ -15,6 +16,14 @@ const caption = imagePopup.querySelector('.big-image__caption');
 const userName = document.querySelector('.profile__name');
 const userDesc = document.querySelector('.profile__description');
 const elements = document.querySelector('.elements');
+const cardTemplateId = '#element-template';
+const settings = {
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save',
+  inactiveButtonClass: 'form__save_disabled',
+  inputErrorClass: 'form__input_errored',
+  errorClass: 'form__input-error_visable',
+};
 
 const initialCards = [
   {
@@ -78,7 +87,7 @@ const handleAddFormSubmit = (evt) => {
   evt.preventDefault();
   const name = elementName.value;
   const link = elementUrl.value;
-  elements.prepend(createNewElement({ name, link }));
+  elements.prepend(new Card({ name, link }, cardTemplateId).createCard());
   addForm.reset();
   closePopup(addPopup);
 };
@@ -87,42 +96,19 @@ const openAddPopup = () => {
   openPopup(addPopup);
 };
 
-const openImagePopup = (img) => {
+export const openImagePopup = (img) => {
   image.src = img.src;
   image.alt = img.alt;
   caption.textContent = img.alt;
   openPopup(imagePopup);
 };
 
-const addInitialElements = () => {
+const setInitialState = () => {
   initialCards.forEach((item) => {
-    elements.append(createNewElement(item));
+    elements.append(new Card(item, cardTemplateId).createCard());
   });
   newName.value = userName.textContent;
   newDesc.value = userDesc.textContent;
-};
-
-const createNewElement = (data) => {
-  const templateElement = document.querySelector('#element-template').content;
-  const newElement = templateElement.cloneNode(true);
-  const newImg = newElement.querySelector('.element__image');
-  const like = newElement.querySelector('.element__like');
-  newImg.src = data.link;
-  newImg.alt = data.name;
-  const newTitle = newElement.querySelector('.element__title');
-  newTitle.textContent = data.name;
-  const deleteButton = newElement.querySelector('.element__delete');
-  deleteButton.addEventListener('click', (evt) => deleteElement(evt.target));
-  newImg.addEventListener('click', (evt) => openImagePopup(evt.target));
-  like.addEventListener('click', (evt) =>
-    evt.target.classList.toggle('element__like_active')
-  );
-  return newElement;
-};
-
-const deleteElement = (button) => {
-  const closestElement = button.closest('.element');
-  closestElement.remove();
 };
 
 const setPopupsListeners = (popupList) => {
@@ -137,7 +123,7 @@ const setPopupsListeners = (popupList) => {
   });
 };
 
-addInitialElements();
+setInitialState();
 
 buttonOpenEditPopup.addEventListener('click', openEditPopup);
 
@@ -146,5 +132,9 @@ buttonOpenAddPopup.addEventListener('click', openAddPopup);
 addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt));
 
 editForm.addEventListener('submit', (evt) => handleEditFormSubmit(evt));
+
+new FormValidator(settings, addForm).enableValidation();
+
+new FormValidator(settings, editForm).enableValidation();
 
 setPopupsListeners([editPopup, addPopup, imagePopup]);
