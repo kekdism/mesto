@@ -1,10 +1,9 @@
-import { openImagePopup } from './script.js';
-
-export class Card {
-  constructor(data, templateName) {
-    this._name = data.name;
-    this._link = data.link;
+export default class Card {
+  constructor({ name, link }, templateName, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._templateName = templateName;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -26,14 +25,14 @@ export class Card {
 
   _handleLikeButton(evt) {
     evt.target.classList.toggle('element__like_active');
-  };
+  }
 
   _setEventListeners() {
     const img = this._element.querySelector('.element__image');
     const like = this._element.querySelector('.element__like');
     const deleteButton = this._element.querySelector('.element__delete');
     deleteButton.addEventListener('click', this._deleteCard);
-    img.addEventListener('click', openImagePopup);
+    img.addEventListener('click', this._handleCardClick);
     like.addEventListener('click', this._handleLikeButton);
   }
 
