@@ -520,9 +520,55 @@ template {
 }
 
 .profile__image {
+  position: relative;
   width: 120px;
   height: 120px;
+  margin: 0;
+  padding: 0;
+  border: none;
   border-radius: 50%;
+  background-color: black;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.profile__image::before {
+  width: 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 2;
+}
+
+.profile__image:hover::before {
+  opacity: 0.8;
+}
+
+.profile__image::after {
+  width: 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(8667ac4a523e8fc42e59.svg) no-repeat center;
+  background-size: 26px 26px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 3;
+}
+
+.profile__image:hover::after {
+  opacity: 1;
 }
 
 .profile__name {
@@ -632,6 +678,10 @@ template {
   opacity: 0.5;
 }
 
+.element__delete_inactive {
+  display: none;
+}
+
 .element__image {
   width: 282px;
   height: 282px;
@@ -659,6 +709,11 @@ template {
 }
 
 .element__like {
+  display: flex;
+  flex-direction: column;
+}
+
+.element__like-icon {
   width: 22px;
   height: 19px;
   border: 0;
@@ -669,12 +724,21 @@ template {
   transition: opacity 0.1s;
 }
 
-.element__like:hover {
+.element__like-icon:hover {
   opacity: 0.5;
 }
 
-.element__like_active {
+.element__like-icon_active {
   background-image: url(e787eeb70bb65b7b453a.svg);
+}
+
+.element__like-counter {
+  padding: 0;
+  margin: 3px 0 0 0;
+  font-size: 13px;
+  line-height: 16px;
+  font-style: normal;
+  text-align: center;
 }
 
 .footer {
