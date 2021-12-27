@@ -59,7 +59,7 @@ import PopupWithSubmit from '../components/PopupWithSubmit.js';
     evt.preventDefault();
     try {
       avatarPopup.showLoadingText(true);
-      const { 'add-url': avatar } = avatarPopup.getInputValues();
+      const { 'add-avatar-url': avatar } = avatarPopup.getInputValues();
       const newUserInfo = await api.updateUserAvatar('me', { avatar });
       userInfo.setUserInfo(newUserInfo);
       avatarPopup.showLoadingText(false);
