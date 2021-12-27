@@ -17,15 +17,11 @@
     <main class="main page__main">
       <section class="profile">
         <div class="profile__info">
-          <img
-            class="profile__image"
-            src="<%=require('./images/profile-img.jpg')%>"
-            alt="Аватар пользователя"
-          />
+          <button type="button" class="profile__image"></button>
           <div class="profile__title">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button type="button" class="profile__edit-button"></button>
-            <p class="profile__description">Исследователь океана</p>
+            <p class="profile__description"></p>
           </div>
         </div>
         <button type="button" class="profile__add-button"></button>
@@ -93,6 +89,34 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_avatar-edit">
+      <div class="popup__container">
+        <button type="button" class="popup__close"></button>
+        <form name="form" class="form form-add" novalidate>
+          <h2 class="form__title">Обновить аватар</h2>
+          <input
+            type="url"
+            id="add-url"
+            placeholder="Ссылка на картинку"
+            class="form__input"
+            required
+          />
+          <span class="form__input-error add-url-error"> </span>
+          <button class="form__save form__save-add" type="submit">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_confirmation">
+      <div class="popup__container">
+        <button type="button" class="popup__close"></button>
+        <form name="form" class="form form-add" novalidate>
+          <h2 class="form__title">Вы уверены?</h2>
+          <button class="form__save form__save-add" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
     <div class="popup popup_image">
       <div class="popup__container">
         <button type="button" class="popup__close"></button>
@@ -108,7 +132,10 @@
         <img class="element__image" />
         <div class="element__description">
           <h2 class="element__title"></h2>
-          <button type="button" class="element__like"></button>
+          <div class="element__like">
+            <button type="button" class="element__like-icon"></button>
+            <p class="element__like-counter"></p>
+          </div>
         </div>
       </article>
     </template>

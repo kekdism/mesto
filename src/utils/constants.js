@@ -39,8 +39,12 @@ export const buttonOpenEditPopup = document.querySelector(
 export const buttonOpenAddPopup = document.querySelector(
   '.profile__add-button'
 );
+export const buttonAvatarEdit = document.querySelector('.profile__image');
 export const editPopupName = document.querySelector('#edit-name');
 export const editPopupDesc = document.querySelector('#edit-description');
 export const userNameSelector = '.profile__name';
 export const userDescSelector = '.profile__description';
+export const userAvatarSelector = '.profile__image';
 export const cardTemplateId = '#element-template';
+export const serverUrl = 'https://mesto.nomoreparties.co/v1/cohort-33';
+export const token = '5e0c4a37-b5c9-4c9b-b297-290987370e01';
