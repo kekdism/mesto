@@ -4,12 +4,11 @@ export default class Card {
     templateName,
     handleCardClick,
     checkOwner,
-    handleCardLike,
-    { handleCardDelete }
+    { handleCardLike, handleCardDelete }
   ) {
     this._name = name;
     this._link = link;
-    this._likes = likes.map((like) => like._id);
+    this._likes = likes;
     this._id = _id;
     this._ownerId = owner._id;
     this._templateName = templateName;
@@ -35,40 +34,34 @@ export default class Card {
   };
 
   deleteCard = () => {
-    const closestElement = this._element
-      .querySelector('.element__delete')
-      .closest('.element');
-    closestElement.remove();
+    this._element.remove();
+    this._element = null;
   };
 
   getId = () => {
     return this._id;
   };
 
-  _handleLikeButton = async (evt) => {
-    if (!evt.target.classList.contains('element__like-icon_active')) {
-      try {
-        const { likes } = await this._handleCardLike('PUT', this._id);
-        this._likes = likes.map((like) => like._id);
-        this._counter.textContent = this._likes.length;
-      } catch (err) {
-        console.log(err);
-      }
+  updateLikeState = (likes = this._likes) => {
+    const likesId = likes.map((like) => like._id);
+    this._likes = likes;
+    if (likesId.some(this._checkOwner)) {
+      this._like.classList.add('element__like-icon_active');
+      this._isLiked = true;
     } else {
-      try {
-        const { likes } = await this._handleCardLike('DELETE', this._id);
-        this._likes = likes.map((like) => like._id);
-        this._counter.textContent = this._likes.length;
-      } catch (err) {
-        console.log(err);
-      }
+      this._like.classList.remove('element__like-icon_active');
+      this._isLiked = false;
     }
-    evt.target.classList.toggle('element__like-icon_active');
+    this._counter.textContent = likesId.length;
+  };
+
+  isLiked = () => {
+    return this._isLiked;
   };
 
   _setEventListeners = () => {
     const img = this._element.querySelector('.element__image');
-    const like = this._element.querySelector('.element__like-icon');
+    this._like = this._element.querySelector('.element__like-icon');
     const deleteButton = this._element.querySelector('.element__delete');
 
     if (!this._checkOwner(this._ownerId)) {
@@ -76,11 +69,12 @@ export default class Card {
     } else {
       deleteButton.addEventListener('click', this._handleCardDelete);
     }
+
+    this.updateLikeState();
+
     img.addEventListener('click', this._handleCardClick);
-    like.addEventListener('click', this._handleLikeButton);
-    if (this._likes.some(this._checkOwner)) {
-      like.classList.add('element__like-icon_active');
-    }
+    this._like.addEventListener('click', this._handleCardLike);
+    this.updateLikeState();
   };
 
   createCard = () => {

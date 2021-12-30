@@ -119,8 +119,16 @@ import PopupWithSubmit from '../components/PopupWithSubmit.js';
       cardTemplateId,
       imagePopup.open.bind(imagePopup),
       checkOwner,
-      handleCardLike,
       {
+        handleCardLike: async () => {
+          try {
+            const method = card.isLiked() ? 'DELETE' : 'PUT';
+            const { likes } = await api.handleCardLike(method, card.getId());
+            card.updateLikeState(likes);
+          } catch (err) {
+            console.log(err);
+          }
+        },
         handleCardDelete: () => {
           confirmPopup.open();
           confirmPopup.setSubmit(async (evt) => {
@@ -151,7 +159,7 @@ import PopupWithSubmit from '../components/PopupWithSubmit.js';
   }
 
   buttonOpenEditPopup.addEventListener('click', () => {
-    const { name, description } = userInfo.getUserInfo();
+    const { name = '', description = '' } = userInfo.getUserInfo();
     editPopupName.value = name;
     editPopupDesc.value = description;
     editPopup.open();

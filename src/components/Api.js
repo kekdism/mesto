@@ -8,93 +8,65 @@ export default class Api {
     if (!responce.ok) {
       return Promise.reject(console.log(responce.status));
     }
-    return responce.json();
+    return await responce.json();
   };
 
   getCard = async (id = '') => {
-    try {
-      const res = await fetch(`${this._baseUrl}/cards/`, {
-        method: 'GET',
-        headers: this._headers,
-      });
-      return await this._checkStatus(res);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await fetch(`${this._baseUrl}/cards/`, {
+      method: 'GET',
+      headers: this._headers,
+    });
+    return await this._checkStatus(res);
   };
 
   getUserInfo = async (user) => {
-    try {
-      const res = await fetch(`${this._baseUrl}/users/${user}`, {
-        method: 'GET',
-        headers: this._headers,
-      });
-      return await this._checkStatus(res);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await fetch(`${this._baseUrl}/users/${user}`, {
+      method: 'GET',
+      headers: this._headers,
+    });
+    return await this._checkStatus(res);
   };
 
   updateUserInfo = async (user, data) => {
-    try {
-      const res = await fetch(`${this._baseUrl}/users/${user}`, {
-        method: 'PATCH',
-        headers: this._headers,
-        body: JSON.stringify(data),
-      });
-      return await this._checkStatus(res);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await fetch(`${this._baseUrl}/users/${user}`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data),
+    });
+    return await this._checkStatus(res);
   };
 
   updateUserAvatar = async (user, data) => {
-    try {
-      const res = await fetch(`${this._baseUrl}/users/${user}/avatar`, {
-        method: 'PATCH',
-        headers: this._headers,
-        body: JSON.stringify(data),
-      });
-      return await this._checkStatus(res);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await fetch(`${this._baseUrl}/users/${user}/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data),
+    });
+    return await this._checkStatus(res);
   };
 
   postCard = async (data) => {
-    try {
-      const res = await fetch(`${this._baseUrl}/cards`, {
-        method: 'POST',
-        headers: this._headers,
-        body: JSON.stringify(data),
-      });
-      return await this._checkStatus(res);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(data),
+    });
+    return await this._checkStatus(res);
   };
 
   handleCardLike = async (method, cardId) => {
-    try {
-      const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: method,
-        headers: this._headers,
-      });
-      return await this._checkStatus(res);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: method,
+      headers: this._headers,
+    });
+    return await this._checkStatus(res);
   };
 
   deleteCard = async (cardId) => {
-    try {
-      const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
-        method: 'DELETE',
-        headers: this._headers,
-      });
-      return await this._checkStatus(res);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    });
+    return await this._checkStatus(res);
   };
 }
