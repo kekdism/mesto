@@ -17,10 +17,21 @@ export default class UserInfo {
     avatar,
     _id = this._id,
   }) => {
-    this._userName.textContent = name;
-    this._userDescription.textContent = about;
-    this._userAvatar.style.backgroundImage = `url(${avatar})`;
-    this._id = _id;
+    //Только тут надо проверять или каждый ответ на запрос надо
+    //что б ответный объект содержал все необходимые поля?
+
+    if (name) {
+      this._userName.textContent = name;
+    }
+    if (about) {
+      this._userDescription.textContent = about;
+    }
+    if (avatar) {
+      this._userAvatar.style.backgroundImage = `url(${avatar})`;
+    }
+    if (_id) {
+      this._id = _id;
+    }
   };
 
   isOwner = (id) => {
