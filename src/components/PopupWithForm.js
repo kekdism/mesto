@@ -22,13 +22,13 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', this._handleFormSubmit);
   }
 
-  showLoadingText = (isLoading) => {
+  showLoadingText(isLoading) {
     if (isLoading) {
       this._submitButton.textContent = 'Сохранение...';
     } else {
       this._submitButton.textContent = this._defaultButtonText;
     }
-  };
+  }
 
   getForm() {
     return this._form;

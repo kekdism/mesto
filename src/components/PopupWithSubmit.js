@@ -8,15 +8,15 @@ export default class PopupWithSubmit extends Popup {
     this._defaultButtonText = this._submitButton.textContent;
   }
 
-  setSubmit = (handleSubmit) => {
+  setSubmit(handleSubmit) {
     this._form.addEventListener('submit', handleSubmit);
-  };
+  }
 
-  showLoadingText = (isLoading) => {
+  showLoadingText(isLoading) {
     if (isLoading) {
       this._submitButton.textContent = 'Удаление...';
     } else {
       this._submitButton.textContent = this._defaultButtonText;
     }
-  };
+  }
 }

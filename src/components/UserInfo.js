@@ -4,22 +4,19 @@ export default class UserInfo {
     this._userDescription = document.querySelector(userDescriptionSelector);
     this._userAvatar = document.querySelector(userAvatarSelector);
   }
-  getUserInfo = () => {
+  getUserInfo() {
     return {
       name: this._userName.textContent,
       description: this._userDescription.textContent,
     };
-  };
+  }
 
-  setUserInfo = ({
+  setUserInfo({
     name = this._userName.textContent,
     about = this._userDescription.textContent,
     avatar,
     _id = this._id,
-  }) => {
-    //Только тут надо проверять или каждый ответ на запрос надо
-    //что б ответный объект содержал все необходимые поля?
-
+  }) {
     if (name) {
       this._userName.textContent = name;
     }
@@ -32,9 +29,9 @@ export default class UserInfo {
     if (_id) {
       this._id = _id;
     }
-  };
+  }
 
-  isOwner = (id) => {
+  isOwner(id) {
     return id === this._id;
-  };
+  }
 }

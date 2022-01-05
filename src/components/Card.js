@@ -18,7 +18,7 @@ export default class Card {
     this._handleCardLike = handleCardLike;
   }
 
-  _getTemplate = () => {
+  _getTemplate() {
     const element = document
       .querySelector(this._templateName)
       .content.children[0].cloneNode(true);
@@ -31,18 +31,18 @@ export default class Card {
     img.alt = this._name;
     title.textContent = this._name;
     return element;
-  };
+  }
 
-  deleteCard = () => {
+  deleteCard() {
     this._element.remove();
     this._element = null;
-  };
+  }
 
-  getId = () => {
+  getId() {
     return this._id;
-  };
+  }
 
-  updateLikeState = (likes = this._likes) => {
+  updateLikeState(likes = this._likes) {
     const likesId = likes.map((like) => like._id);
     this._likes = likes;
     if (likesId.some(this._checkOwner)) {
@@ -53,13 +53,13 @@ export default class Card {
       this._isLiked = false;
     }
     this._counter.textContent = likesId.length;
-  };
+  }
 
-  isLiked = () => {
+  isLiked() {
     return this._isLiked;
-  };
+  }
 
-  _setEventListeners = () => {
+  _setEventListeners() {
     const img = this._element.querySelector('.element__image');
     this._like = this._element.querySelector('.element__like-icon');
     const deleteButton = this._element.querySelector('.element__delete');
@@ -75,11 +75,11 @@ export default class Card {
     img.addEventListener('click', this._handleCardClick);
     this._like.addEventListener('click', this._handleCardLike);
     this.updateLikeState();
-  };
+  }
 
-  createCard = () => {
+  createCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
     return this._element;
-  };
+  }
 }
